@@ -75,8 +75,6 @@ class EndingScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           RichText(
-            textScaleFactor: 2.0,
-            // Use RichText to style different parts of text
             text: TextSpan(
                 // Use TextSpan to combine different text styles
                 style: TextStyle(
@@ -88,11 +86,9 @@ class EndingScreen extends StatelessWidget {
                           fontWeight:
                               FontWeight.bold)), // Use bold style for label
                   TextSpan(text: ' $ending'), // Use normal style for metric
-                ]),
+                ]), textScaler: TextScaler.linear(2.0),
           ),
           RichText(
-            textScaleFactor: 2.0,
-            // Repeat for other statistics
             text: TextSpan(
                 // Use TextSpan to combine different text styles
                 style: TextStyle(color: Colors.black),
@@ -101,10 +97,9 @@ class EndingScreen extends StatelessWidget {
                       text: 'Segments discovered:',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: ' $segmentsCompleted/${story.size}'),
-                ]),
+                ]), textScaler: TextScaler.linear(2.0),
           ),
           RichText(
-            textScaleFactor: 2.0,
             text: TextSpan(style: TextStyle(color: Colors.black), children: [
               TextSpan(
                   text: 'Completion:',
@@ -113,7 +108,7 @@ class EndingScreen extends StatelessWidget {
                   text: ' ' +
                       ((segmentsCompleted / story.endings) * 100)
                           .toStringAsFixed(1)),
-            ]),
+            ]), textScaler: TextScaler.linear(2.0),
           ),
         ],
       ),
@@ -162,7 +157,7 @@ class EndingScreen extends StatelessWidget {
             context.go('/' + story.name + "/" + story.start + "/0");
           }, // Add your logic here
           style: ElevatedButton.styleFrom(
-              primary: Color.fromARGB(
+              backgroundColor: Color.fromARGB(
                   255, 137, 219, 90)), // Use red color for this button
           child: Text(restartStory,
               style: TextStyle(
@@ -179,7 +174,7 @@ class EndingScreen extends StatelessWidget {
           // A button for continuing from unfinished path
           onPressed: () {}, // Add your logic here
           style: ElevatedButton.styleFrom(
-              primary: Color.fromARGB(
+              backgroundColor: Color.fromARGB(
                   255, 111, 173, 253)), // Use green color for this button
           child: Text(continuePath,
               style: TextStyle(
@@ -198,7 +193,7 @@ class EndingScreen extends StatelessWidget {
             context.go('/');
           }, // Add your logic here
           style: ElevatedButton.styleFrom(
-              primary: Color.fromARGB(
+              backgroundColor: Color.fromARGB(
                   255, 255, 111, 111)), // Use blue color for this button
           child: Text(backToMenu,
               style: TextStyle(

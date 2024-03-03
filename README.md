@@ -19,3 +19,11 @@ The horror story is the first story that I generated in the platform. For this p
 ## Why an open source repo?
 
 Because, really, this project is long abandoned. At this point, I'm happy to let anyone salvage what they can from it :)
+
+## Running
+
+Install the Flutter toolchain, then:
+```
+flutter packages get
+flutter run -d web
+```

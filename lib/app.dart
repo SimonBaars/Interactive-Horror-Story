@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'story.dart';
 import 'package:go_router/go_router.dart';
 
-final storyName = "horror"
-final story = getStories().firstWhere((element) => element.name == storyId);
+final storyName = "horror";
+final story = getStories().firstWhere((element) => element.name == storyName);
 final _router = GoRouter(
   routes: [
     GoRoute(

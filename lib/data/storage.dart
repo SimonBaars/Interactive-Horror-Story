@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -10,9 +9,9 @@ import '../model/image_urls.dart';
 class Storage {
   static Future<StoryPart?> getStoryData(String storyId, String segmentId) async {
     try {
-      final pathReference = "assets/" + storyId + "/story/" + segmentId + ".json";
-      final data = await rootBundle.load(pathReference);
-      final dynamic jsonData = jsonDecode(utf8.decode(data));
+      final pathReference = storyId + "/story/" + segmentId + ".json";
+      final data = await rootBundle.loadString(pathReference);
+      final dynamic jsonData = jsonDecode(data);
       final ImageUrls? imageUrls = getImageUrls(
         storyId,
         List<String>.from(jsonData["imageIds"] as List),
@@ -36,6 +35,6 @@ class Storage {
   }
 
   static List<String> extractUrls(String storyId, List<String> imageIds) {
-    return imageIds.map((e) => "assets/" + storyId + "/images_compressed/" + e + ".png").toList();
+    return imageIds.map((e) => storyId + "/images_compressed/" + e + ".png").toList();
   }
 }
