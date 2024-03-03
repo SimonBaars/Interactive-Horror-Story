@@ -57,7 +57,7 @@ class StoryOptionsWidget extends StatelessWidget {
                   topLeft: Radius.circular(8), // Set topLeft radius to 8
                   topRight: Radius.circular(8), // Set topRight radius to 8
                 ),
-                child: Image.network(option.imageUrl),
+                child: Image.asset(option.imageUrl),
               ),
               Padding(
                 padding: EdgeInsets.all(8),
@@ -92,7 +92,7 @@ class StoryOptionsWidget extends StatelessWidget {
                     // Use BoxConstraints to specify maxWidth
                     maxWidth: 400, // Set maxWidth to 200
                   ),
-                  child: Image.network(option.imageUrl),
+                  child: Image.asset(option.imageUrl),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 8),

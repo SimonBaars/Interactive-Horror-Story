@@ -15,7 +15,7 @@ class StoryParagraphWidget extends StatelessWidget {
             margin: const EdgeInsets.all(16.0),
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: constraints.maxWidth * 0.6),
-              child: Image.network(paragraph.imageUrl, fit: BoxFit.cover),
+              child: Image.asset(paragraph.imageUrl, fit: BoxFit.cover),
             ),
           );
           final text = Flexible(
@@ -48,7 +48,7 @@ class StoryParagraphWidget extends StatelessWidget {
                 // Add some margin around the image
                 Container(
                   margin: const EdgeInsets.all(16.0),
-                  child: Image.network(paragraph.imageUrl),
+                  child: Image.asset(paragraph.imageUrl),
                 ),
                 // Add some padding around the text
                 Padding(

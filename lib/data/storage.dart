@@ -2,32 +2,26 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:flutter/services.dart' show rootBundle;
+
 import '../model/story_part.dart';
 import '../model/image_urls.dart';
 
 class Storage {
-  static Future<StoryPart?> getStoryData(
-      String storyId, String segmentId) async {
+  static Future<StoryPart?> getStoryData(String storyId, String segmentId) async {
     try {
-      final storageRef = FirebaseStorage.instance.ref();
-      final pathReference =
-          storageRef.child("/" + storyId + "/story/" + segmentId + ".json");
-
-      const oneMegabyte = 1024 * 1024;
-      final Uint8List? data = await pathReference.getData(oneMegabyte);
-      if (data != null) {
-        final dynamic jsonData = jsonDecode(utf8.decode(data));
-        final ImageUrls? imageUrls = await getImageUrls(
-            storyId,
-            List<String>.from(jsonData["imageIds"] as List),
-            List<String>.from(jsonData["optionImageIds"] as List));
-        if (imageUrls != null) {
-          return new StoryPart(segmentId, jsonData, imageUrls);
-        } else {
-          print("Couldn't fetch images");
-        }
+      final pathReference = "assets/" + storyId + "/story/" + segmentId + ".json";
+      final data = await rootBundle.load(pathReference);
+      final dynamic jsonData = jsonDecode(utf8.decode(data));
+      final ImageUrls? imageUrls = getImageUrls(
+        storyId,
+        List<String>.from(jsonData["imageIds"] as List),
+        List<String>.from(jsonData["optionImageIds"] as List)
+      );
+      if (imageUrls != null) {
+        return new StoryPart(segmentId, jsonData, imageUrls);
       } else {
-        print("Unexpected data");
+        print("Couldn't fetch images");
       }
     } catch (e) {
       print(e);
@@ -35,21 +29,13 @@ class Storage {
     return null;
   }
 
-  static Future<ImageUrls?> getImageUrls(String storyId,
-      List<String> paragraphImageIds, List<String> optionImageIds) async {
-    List<String> paragraphImages =
-        await extractUrls(storyId, paragraphImageIds);
-    List<String> optionImages = await extractUrls(storyId, optionImageIds);
+  static ImageUrls getImageUrls(String storyId, List<String> paragraphImageIds, List<String> optionImageIds) {
+    List<String> paragraphImages = extractUrls(storyId, paragraphImageIds);
+    List<String> optionImages = extractUrls(storyId, optionImageIds);
     return new ImageUrls(paragraphImages, optionImages);
   }
 
-  static Future<List<String>> extractUrls(
-      String storyId, List<String> imageIds) async {
-    final storageRef = FirebaseStorage.instance.ref();
-    final images = imageIds
-        .map((e) => storageRef
-            .child("/" + storyId + "/images_compressed/" + e + ".png"))
-        .map((e) async => await e.getDownloadURL());
-    return Future.wait(images);
+  static List<String> extractUrls(String storyId, List<String> imageIds) {
+    return imageIds.map((e) => "assets/" + storyId + "/images_compressed/" + e + ".png").toList();
   }
 }
