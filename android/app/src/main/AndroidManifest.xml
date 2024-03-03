@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.simonbaars.consequences">
+    package="com.simonbrs.consequences">
    <application
         android:label="consequences"
         android:name="${applicationName}"

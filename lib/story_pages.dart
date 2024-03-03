@@ -1,6 +1,5 @@
 import 'package:consequences/story_options.dart';
 import 'package:flutter/material.dart';
-import 'dart:html' as html;
 
 import 'model/story.dart';
 import 'model/story_part.dart';
@@ -51,8 +50,6 @@ class PageWidget extends StatelessWidget {
                         onPressed: dtc.index == 0
                             ? null
                             : (() {
-                                html.window.history.pushState(
-                                    null, "Home", "${path}${dtc.index - 1}");
                                 DefaultTabController.of(context2)
                                     .animateTo(dtc.index - 1);
                                 setState(() {});
@@ -66,8 +63,6 @@ class PageWidget extends StatelessWidget {
                         onPressed: dtc.index == dtc.length - 1
                             ? null
                             : (() {
-                                html.window.history.pushState(
-                                    null, "Home", "${path}${dtc.index + 1}");
                                 dtc.animateTo(dtc.index + 1);
                                 setState(() {});
                               }),

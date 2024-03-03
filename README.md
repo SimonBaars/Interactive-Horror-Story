@@ -27,3 +27,5 @@ Install the Flutter toolchain, then:
 flutter packages get
 flutter run -d web
 ```
+
+A browser window should open and you can play the game.
