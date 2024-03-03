@@ -1,0 +1,43 @@
+name: consequences
+description: Consequences.app - AI Generated Interactive Stories
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.5 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  firebase_core: ^2.4.1
+  firebase_auth: ^4.2.10
+  firebase_storage: ^11.0.15
+  cloud_firestore: ^4.4.4
+  firebase_ui_auth: ^1.1.16
+  firebase_ui_firestore: ^1.2.9
+  firebase_ui_database: ^1.0.17
+  firebase_ui_oauth: ^1.1.16
+  firebase_ui_oauth_google: ^1.0.21
+  google_sign_in: ^5.4.0
+  go_router: ^6.2.0
+  shared_preferences: ^2.0.18
+  google_mobile_ads: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets/
+  fonts:
+    - family: Pokemon
+      fonts:
+        - asset: assets/Pokemon.ttf
+
+dependency_overrides:
+  intl: ^0.17.0-nullsafety.2
