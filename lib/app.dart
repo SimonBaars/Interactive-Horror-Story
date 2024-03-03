@@ -1,33 +1,27 @@
 import 'package:consequences/model/story.dart';
 import 'package:flutter/material.dart';
 
-import 'auth_gate.dart';
 import 'story.dart';
 import 'package:go_router/go_router.dart';
 
+final storyId = "260d34ac-e8f3-4f9d-ae96-50754bddee8f"
+final story = getStories().firstWhere((element) => element.id == storyId);
 final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => AuthGate(),
+      builder: (context, state) => StoryScreen(story, story.start, '0'),
     ),
-    for (Story story in getStories())
-      GoRoute(
-        path: '/' + story.name,
-        builder: (context, state) => StoryScreen(story, story.start, '0'),
-      ),
-    for (Story story in getStories())
-      GoRoute(
-        path: '/' + story.name + '/:segmentId',
-        builder: (context, state) =>
-            StoryScreen(story, state.params['segmentId'], '0'),
-      ),
-    for (Story story in getStories())
-      GoRoute(
-        path: '/' + story.name + '/:segmentId/:paragraph',
-        builder: (context, state) => StoryScreen(
-            story, state.params['segmentId'], state.params['paragraph']),
-      ),
+    GoRoute(
+      path: '/:segmentId',
+      builder: (context, state) =>
+          StoryScreen(story, state.params['segmentId'], '0'),
+    ),
+    GoRoute(
+      path: '/' + story.name + '/:segmentId/:paragraph',
+      builder: (context, state) => StoryScreen(
+          story, state.params['segmentId'], state.params['paragraph']),
+    ),
   ],
 );
 
