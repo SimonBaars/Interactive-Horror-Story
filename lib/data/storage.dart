@@ -9,7 +9,7 @@ import '../model/image_urls.dart';
 class Storage {
   static Future<StoryPart?> getStoryData(String storyId, String segmentId) async {
     try {
-      final pathReference = storyId + "/story/" + segmentId + ".json";
+      final pathReference = "assets/" + storyId + "/story/" + segmentId + ".json";
       final data = await rootBundle.loadString(pathReference);
       final dynamic jsonData = jsonDecode(data);
       final ImageUrls? imageUrls = getImageUrls(
@@ -35,6 +35,6 @@ class Storage {
   }
 
   static List<String> extractUrls(String storyId, List<String> imageIds) {
-    return imageIds.map((e) => storyId + "/images_compressed/" + e + ".png").toList();
+    return imageIds.map((e) => "assets/" + storyId + "/images_compressed/" + e + ".png").toList();
   }
 }

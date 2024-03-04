@@ -1,4 +1,4 @@
-package com.example.interactive_horror_story
+package com.simonbrs.interactive_horror_story
 
 import io.flutter.embedding.android.FlutterActivity
 
