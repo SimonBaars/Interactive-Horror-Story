@@ -29,3 +29,14 @@ flutter run -d web
 ```
 
 A browser window should open and you can play the game.
+
+## Releasing for Android
+To make a `.aab`:
+```
+flutter build appbundle
+```
+
+To make a `.apk`:
+```
+flutter build apk --release
+```
