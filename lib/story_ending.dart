@@ -9,10 +9,7 @@ class EndingScreen extends StatelessWidget {
   // Define some constants for the statistics and buttons
   final Story story;
   final int ending;
-  final int segmentsCompleted = 72;
   final String restartStory = 'Restart story';
-  final String continuePath = 'Continue unfinished path';
-  final String backToMenu = 'Back to main menu';
 
   // Define a breakpoint for switching between mobile and desktop layout
   static const double breakpoint = 800;
@@ -85,30 +82,8 @@ class EndingScreen extends StatelessWidget {
                       style: TextStyle(
                           fontWeight:
                               FontWeight.bold)), // Use bold style for label
-                  TextSpan(text: ' $ending'), // Use normal style for metric
+                  TextSpan(text: ' $ending/${story.size}'), // Use normal style for metric
                 ]), textScaler: TextScaler.linear(2.0),
-          ),
-          RichText(
-            text: TextSpan(
-                // Use TextSpan to combine different text styles
-                style: TextStyle(color: Colors.black),
-                children: [
-                  TextSpan(
-                      text: 'Segments discovered:',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(text: ' $segmentsCompleted/${story.size}'),
-                ]), textScaler: TextScaler.linear(2.0),
-          ),
-          RichText(
-            text: TextSpan(style: TextStyle(color: Colors.black), children: [
-              TextSpan(
-                  text: 'Completion:',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(
-                  text: ' ' +
-                      ((segmentsCompleted / story.endings) * 100)
-                          .toStringAsFixed(1)),
-            ]), textScaler: TextScaler.linear(2.0),
           ),
         ],
       ),
@@ -166,42 +141,6 @@ class EndingScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold)), // Increase the font size to 20
         ),
       ),
-      SizedBox(
-        // Repeat for other buttons
-        height: 60,
-        width: 200,
-        child: ElevatedButton(
-          // A button for continuing from unfinished path
-          onPressed: () {}, // Add your logic here
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(
-                  255, 111, 173, 253)), // Use green color for this button
-          child: Text(continuePath,
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)), // Increase the font size to 20
-        ),
-      ),
-      SizedBox(
-        // Repeat for other buttons
-        height: 60,
-        width: 200,
-        child: ElevatedButton(
-          // A button for going back to main menu
-          onPressed: () {
-            context.go('/');
-          }, // Add your logic here
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(
-                  255, 255, 111, 111)), // Use blue color for this button
-          child: Text(backToMenu,
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)), // Increase the font size to 20
-        ),
-      )
     ];
   }
 }
